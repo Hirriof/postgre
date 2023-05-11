@@ -2,11 +2,20 @@ import { sql } from '@vercel/postgres';
 
 async function create(formData: FormData) {
   'use server';
+
+  var today = new Date(),
+  date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
+
   const { rows } = await sql`
-    INSERT INTO products (name)
-    VALUES (${formData.get('name')})
+    INSERT INTO whitelist ( USERNAME, EMAIL)
+    VALUES (
+      
+        ${formData.get('name')}, 
+        'qsdqqqqqqaaaaaasd@gmail.com'
+        
+      )
   `;
-  redirect(`/product/${rows[0].slug}`);
+  //redirect(`/product/${rows[0].slug}`);
 }
 
 export default function Page() {
